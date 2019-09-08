@@ -7,6 +7,8 @@ import matplotlib.dates as mdates
 from sklearn.linear_model import LinearRegression
 import prepare
 
+from pandas.plotting import register_matplotlib_converters
+register_matplotlib_converters()
 
 def read():
     X = pd.read_csv(os.path.join(settings.PROCESSED_DIR, settings.PROCESSED_X), header=0)
@@ -24,7 +26,6 @@ def plot_trend(x, predict, y, title):
     plt.title(title)
     plt.grid()
     plt.show()
-
 
 def modify(X, columns):
     columns.append('Date2num')
@@ -60,7 +61,7 @@ def predict_and_plot(X, date):
           % (n, np.mean((lr.predict(X_test) - y_test) ** 2), lr.score(X_test, y_test)))
 
     # Plot outputs
-    plot_trend(date_test, lr.predict(X_test), y_test, 'Facebook Inc(NASDAQ:FB)')
+    plot_trend(date_test, lr.predict(X_test), y_test, 'TEST: Facebook Inc(NASDAQ:FB)')
     plot_trend(date, lr.predict(X), y, 'Facebook Inc(NASDAQ:FB)')
 
 
