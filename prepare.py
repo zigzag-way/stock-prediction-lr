@@ -10,7 +10,8 @@ def read():
 
 
 def clean(prices):
-    (m, n) = prices.shape
+    prices.fillna(method='bfill', inplace=True)
+    m, n = prices.shape
     prices['Date'] = pd.to_datetime(prices['Date'], format='%Y-%m-%d')
     prices = prices.loc[:, ['Date', 'Open', 'Close']]
 
