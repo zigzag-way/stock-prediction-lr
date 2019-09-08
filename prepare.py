@@ -11,7 +11,7 @@ def read():
 
 def clean(prices):
     (m, n) = prices.shape
-    prices['Date'] = pd.to_datetime(prices['﻿Date'], format='%d-%b-%y')
+    prices['Date'] = pd.to_datetime(prices['Date'], format='%Y-%m-%d')
     prices = prices.loc[:, ['Date', 'Open', 'Close']]
 
     # Add new column "Close Price at the Previous Day" and "Open Price at the Previous Day"
